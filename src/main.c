@@ -4,6 +4,7 @@
 void setup_gpio() {
     RCC->AHBENR |= RCC_AHBENR_GPIOAEN;
     RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
+
     // PA0 for CLK, PA1 for LAT, PA2 for OE
     GPIOA->MODER |= GPIO_MODER_MODER0_0
                   | GPIO_MODER_MODER1_0
@@ -33,16 +34,16 @@ void setup_gpio() {
                     | GPIO_MODER_MODER13_1); // D
 
     // set PB0,1,2 for keypad cols(output), PB3,4,5 for keypad(input with pull down resistor)
-    GPIOB->MODER &= ~(GPIO_MODER_MODER0_1 //col
+    GPIOB->MODER &= ~(GPIO_MODER_MODER0_1 // col
                  | GPIO_MODER_MODER1_1
                  | GPIO_MODER_MODER2_1
                  | GPIO_MODER_MODER3_1);
-    GPIOB->MODER |= (GPIO_MODER_MODER0_0 //col
+    GPIOB->MODER |= (GPIO_MODER_MODER0_0 // col
                  | GPIO_MODER_MODER1_0
                  | GPIO_MODER_MODER2_0
                  | GPIO_MODER_MODER3_0);
 
-    GPIOB->MODER &= ~(GPIO_MODER_MODER4 //row
+    GPIOB->MODER &= ~(GPIO_MODER_MODER4 // row
                  | GPIO_MODER_MODER5
                  | GPIO_MODER_MODER6
                  | GPIO_MODER_MODER7);
